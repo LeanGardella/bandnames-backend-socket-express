@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BandNames Backend Console</title>
+</head>
+
+<body>
+    <h1>Running</h1>
+
+    <script src="socket.io/socket.io.js"></script>
+    <script>
+        var io = io();
+        io.on('connect', function() {
+            console.log('Conectado al backend');
+        });
+        io.on('disconnect', function() {
+            console.log('Desconectado del backend');
+        });
+
+        io.emit('message', {nombre: 'Leandro'});
+
+        io.on('broadcast', function(payload) {
+            console.log('El servidor dijo: ', payload.message);
+        });
+    </script>
+</body>
+
+
+</html>
